@@ -6,11 +6,13 @@ const database = {
   roles: [],
   softwares: [],
   equipments: [],
-  supplies: []
+  supplies: [],
+  members: [],
+  groups: [],
 }
 Object.keys(database).forEach((key) => {
   database[key] = [
-    ...database[key], 
+    ...database[key],
     ...csvToJson.fieldDelimiter(',')
       .getJsonFromCsv(`./data-in-csv/${key}.csv`)
   ]
