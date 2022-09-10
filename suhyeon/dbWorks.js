@@ -24,8 +24,14 @@ const dataFiltered = (which, args) => {
 
 const dbWorks = {
     getMembers: (args) => dataFiltered('members', args),
-    getGroups: (args) => dataFiltered('groups', args),
+    getGroups: (args) => database.members.filter((member) => member.group === args.id),
+    getGroup: (args) => {
+        const getGroup = dataFiltered('groups', args).filter(group => group.id === args.id)[0];
+        getGroup.members = [...database.members.filter(member => member.group === args.id)];
+        return getGroup;
+    },
     getRoles: (args) => dataFiltered('roles', args),
+    getRoleMembers: (args) => dataFiltered('members', args).filter((member) => member.role === args.role),
     getMember: (args) => dataFiltered('members', args).filter((member) => member.id === args.id)[0],
     editMember: (args) => {
         return database.members.filter((member) => member.id === args.id).map((member) => {
