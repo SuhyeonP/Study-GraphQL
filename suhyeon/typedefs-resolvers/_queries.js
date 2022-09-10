@@ -5,6 +5,7 @@ const typeDefs = gql`
         members: [Member]
         groups: [Group]
         roles: [Role]
+        member(id: String): Member
     }
 `;
 

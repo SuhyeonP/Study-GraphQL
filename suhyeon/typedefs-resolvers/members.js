@@ -12,6 +12,7 @@ const typeDefs = gql`
 const resolvers = {
     Query: {
         members: (parent, args) => dbWorks.getMembers(args),
+        member: (parent, args) => dbWorks.getMember(args)
     },
     Mutation: {
         deleteMember: (parent, args) => dbWorks.deleteItem('members', args)
